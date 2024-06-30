@@ -1,0 +1,40 @@
+Prince_Event UN PROJET PERSONNEL DANS LE CADRE DE MA FORMATION AVEC PHP/MSSQL
+
+ETAPES DU PROJET : 
+
+    - CE PROJET EST DIVISEE EN 3 PARTIES : MCV MODEL VUE CONTROLEUR
+
+    - LE MODEL PAR LE DOSSIER model, QUI CONTIENT LE FICHIER dataLayer.model.php, CE FICHIER GERE LA CONNEXION A LA BASE DE DONNEES
+        AINSI QUE LES DIFFERENTES REQUETES SQL
+
+    - LA VUE PAR LE DOSSIER view, LE FICHIER view.php GERE L'AFFICHAGE DU PROJET
+
+    - LE CONTROLEUR PAR LE DOSSIER src, TOUT EST GENERE PAR CE DOSSIER, index.php GERE LES REQUETTES UTILISATEURS
+
+        GENERE L'AFFICHAGE, include.php DEFINITIONS DES CONSTANTES, functions.php GERE LES FONCTOIONNALITES DE L'APPLICATION
+
+
+FONCTIONNEMENT DE L'APPLICATION :
+
+    - A l'accueil l'utilisateur se connecte par son email et mot de passe, sinon il peut creer un compte
+
+    -  un utilisateur peut voir les evenements, il peut aussi ajouter, ou faire un filtre de recherche
+
+    - Il peut voir son profil, si possible le mettre à jour
+
+    - Puis se déconnecter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
