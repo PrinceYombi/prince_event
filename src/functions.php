@@ -1,22 +1,4 @@
 <?php
-/**
- * VERIFICATION DE DONNEES ENTREES PAR L'USER DE FAçON GENERAL
- */
-function verifParams(){
-
-    if (isset($_POST) && sizeof($_POST)>0) {
-        
-        foreach ($_POST as $key => $value) {
-            
-            $data = trim($value);
-            $data = stripslashes($data);
-            $data = strip_tags($data);
-            $data = htmlspecialchars($data);
-
-            $_POST[$key] = $data;
-        }
-    }
-}
 
 /**
  * PAGE ACCUEIL
@@ -299,29 +281,29 @@ function displayEvent(){
             
             $searchEvent = ucwords($_POST['searchEvent']);
 
-            $categorieData = $model->getEvent(NULL, $searchEvent, NULL, NULL);
+            $nomEnvent = $model->getEvent(NULL, $searchEvent, NULL, NULL);
             //print_r($categorieData[0]); exit();
             $date_eventData = $model->getEvent(NULL, NULL, $searchEvent, NULL);
             $time_eventData = $model->getEvent(NULL, NULL, NULL, $searchEvent);
 
-            if (isset($categorieData[0]) && $searchEvent === $categorieData[0]['categorie']) {
+            if (isset($nomEnvent[0]) && $searchEvent === ucwords($nomEnvent[0]['nom'])) {
                 
-                foreach ($categorieData as $key => $value) {
+                foreach ($nomEnvent as $key => $value) {
 
                     $result .='
-                    <div class="card mb-3" style="max-width: 640px; height: 330px;">
+                    <div class="card mb-3">
                         <div class="row g-0 h-100">
                             <div class="col-md-6 h-100">
                             <img src="'.BASE_URL.SP."images".SP.$value['image_name'].'" class="img-fluid rounded-start w-100 h-100" alt="...">
                             </div>
                             <div class="col-md-6 h-100">
-                                <div class="card-body h-100  d-flex flex-column justify-content-center align-items-center">
+                                <div class="card-body h-100">
                                     <h5 class="card-title fw-bold text-center mt-3">'.$value['nom'].'</h5>
                                     <p class="card-text text-center my-3" style="font-size:0.8em">'.$value['description'].'</p>
                                     <p class="card-text text-center fw-bold text-success">'.$value['categorie'].'</p>
                                     <p class="card-text text-center">Date : '.$value['date_event'].'</p>
                                     <p class="card-text text-center">Heure : '.$value['time_event'].'</p>
-                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3">Voir</a>
+                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3 btn-voir">Voir</a>
                                 </div>
                             </div>
                         </div>
@@ -334,7 +316,7 @@ function displayEvent(){
                 foreach ($date_eventData as $key => $value) {
 
                     $result .='
-                    <div class="card mb-3" style="max-width: 640px; height: 330px;">
+                    <div class="card mb-3">
                         <div class="row g-0 h-100">
                             <div class="col-md-6 h-100">
                             <img src="'.BASE_URL.SP."images".SP.$value['image_name'].'" class="img-fluid rounded-start w-100 h-100" alt="...">
@@ -346,7 +328,7 @@ function displayEvent(){
                                     <p class="card-text text-center fw-bold text-success">'.$value['categorie'].'</p>
                                     <p class="card-text text-center">Date : '.$value['date_event'].'</p>
                                     <p class="card-text text-center">Heure : '.$value['time_event'].'</p>
-                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3">Voir</a>
+                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3 btn-voir">Voir</a>
                                 </div>
                             </div>
                         </div>
@@ -359,7 +341,7 @@ function displayEvent(){
                 foreach ($time_eventData as $key => $value) {
 
                     $result .='
-                    <div class="card mb-3" style="max-width: 640px; height: 330px;">
+                    <div class="card mb-3">
                         <div class="row g-0 h-100">
                             <div class="col-md-6 h-100">
                             <img src="'.BASE_URL.SP."images".SP.$value['image_name'].'" class="img-fluid rounded-start w-100 h-100" alt="...">
@@ -371,7 +353,7 @@ function displayEvent(){
                                     <p class="card-text text-center fw-bold text-success">'.$value['categorie'].'</p>
                                     <p class="card-text text-center">Date : '.$value['date_event'].'</p>
                                     <p class="card-text text-center">Heure : '.$value['time_event'].'</p>
-                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3">Voir</a>
+                                    <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3 btn-voir">Voir</a>
                                 </div>
                             </div>
                         </div>
@@ -392,19 +374,19 @@ function displayEvent(){
             foreach ($dataEvent as $key => $value) {
     
                 $result .='
-                <div class="card mb-3" style="max-width: 640px; height: 330px;">
-                    <div class="row g-0 h-100">
-                        <div class="col-md-6 h-100">
+                <div class="card mb-3">
+                    <div class="row g-0 h-100 ">
+                        <div class="col-md-6 image-card">
                         <img src="'.BASE_URL.SP."images".SP.$value['image_name'].'" class="img-fluid rounded-start w-100 h-100" alt="...">
                         </div>
-                        <div class="col-md-6 h-100">
-                            <div class="card-body h-100  d-flex flex-column justify-content-center align-items-center">
+                        <div class="col-md-6 content-card">
+                            <div class="card-body h-100">
                                 <h5 class="card-title fw-bold text-center mt-3">'.$value['nom'].'</h5>
                                 <p class="card-text text-center my-3" style="font-size:0.8em">'.$value['description'].'</p>
                                 <p class="card-text text-center fw-bold text-success">'.$value['categorie'].'</p>
                                 <p class="card-text text-center">Date : '.$value['date_event'].'</p>
                                 <p class="card-text text-center">Heure : '.$value['time_event'].'</p>
-                                <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3">Voir</a>
+                                <a href="'.BASE_URL.SP."voir".SP.$value['id'].'"class="btn btn-primary my-3 btn-voir">Voir</a>
                             </div>
                         </div>
                     </div>
@@ -455,6 +437,7 @@ function displayAddEvent(){
             <input type="time" class="form-control" name="time_event">
         </div>
          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Date</label>
             <input type="file" class="form-control" name="imageEvent">
         </div>
 

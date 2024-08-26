@@ -156,3 +156,41 @@ footer p.copyright span{
     width: 70%;
     font-size: 1.3rem;
 }
+
+.card{
+    max-width: 640px;
+    height: 330px;
+}
+
+.image-card,
+.content-card{
+    height: 100%;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and  (max-width:768px) {
+    
+    .card{
+        height: 650px;
+    }
+    .image-card{
+        height: 50%;
+    }
+    .content-card{
+        height: 50%;
+    }
+
+    .card-body{
+        display: inline-block;
+    }
+
+    a.btn-voir{
+        width: 100%;
+    }
+}

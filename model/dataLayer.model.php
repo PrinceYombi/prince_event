@@ -149,7 +149,7 @@ class DataLayer{
     /**
      * REQUETTE DE RECUPERATION D'EVENEMENT 
      */
-    function getEvent($idEvent=NULL, $categorie=NULL, $date_event=NULL, $time_event=NULL){
+    function getEvent($idEvent=NULL, $nom=NULL, $date_event=NULL, $time_event=NULL){
 
         $sql = "SELECT * FROM evenement ";
 
@@ -157,8 +157,8 @@ class DataLayer{
             if (isset($idEvent)) {
                 $sql .= "WHERE id = $idEvent";
             }
-            if (isset($categorie)) {
-                $sql .= "WHERE categorie = '$categorie'";
+            if (isset($nom)) {
+                $sql .= "WHERE nom = '$nom'";
             }
             if (isset($date_event)) {
                 $sql .= "WHERE date_event = '$date_event'";
